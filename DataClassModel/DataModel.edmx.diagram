@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b3db49e54cc64a98be62e8bdbebf2e20" Name="Diagram1">
+        <EntityTypeShape EntityType="HRWorkModel.Appointments" Width="1.5" PointX="2.625" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRWorkModel.Divisions" Width="1.5" PointX="0.625" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRWorkModel.EduLevels" Width="1.5" PointX="2.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRWorkModel.Employes" Width="1.5" PointX="4.875" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRWorkModel.FireCauses" Width="1.5" PointX="10" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRWorkModel.Fires" Width="1.5" PointX="11.875" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRWorkModel.Photos" Width="1.5" PointX="13.875" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRWorkModel.Positions" Width="1.5" PointX="0.625" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRWorkModel.Salaries" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRWorkModel.Users" Width="1.5" PointX="13.875" PointY="0.625" IsExpanded="true" />
+        <AssociationConnector Association="HRWorkModel.fk_App_DivisionID_Divisions_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="HRWorkModel.fk_App_EmployeeId_Employes_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="HRWorkModel.fk_App_PositionId_Positions_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="HRWorkModel.fk_Emp_DivisionID_Divisions_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="HRWorkModel.fk_Emp_EduLevelID_EduLevels_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="HRWorkModel.fk_Emp_PositionId_Positions_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="HRWorkModel.fk_Fir_EmployeeId_Employes_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="HRWorkModel.fk_Pho_EmployeeId_Employes_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="HRWorkModel.fk_Sal_EmployeeId_Employes_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="HRWorkModel.fk_Fir_CauseID_FireCauses_Id" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HRWorkModel.CompanyInfo" Width="1.5" PointX="11.875" PointY="4.625" />
+        <EntityTypeShape EntityType="HRWorkModel.Vacations" Width="1.5" PointX="9.125" PointY="6.125" />
+        <AssociationConnector Association="HRWorkModel.fk_Cnfo_CompanyFinHeadId_Employes_Id" />
+        <AssociationConnector Association="HRWorkModel.fk_Cnfo_CompanyHeadId_Employes_Id" />
+        <AssociationConnector Association="HRWorkModel.fk_Cnfo_CompanyHRHeadId_Employes_Id" />
+        <AssociationConnector Association="HRWorkModel.fk_Vac_EmployeeId_Employes_Id" />
+        <EntityTypeShape EntityType="HRWorkModel.GeneralOrders" Width="1.5" PointX="13.875" PointY="2.5" />
+        <AssociationConnector Association="HRWorkModel.fg_Fir_GeneralFireOrderId_GeneralOrders_Id" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

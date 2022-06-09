@@ -1,0 +1,94 @@
+﻿<Window x:Class="Main.EmpCardViewEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Title="Карточка сотрудника" Height="600" Width="800" Loaded="Window_Loaded" ResizeMode="CanMinimize" Closing="Window_Closing" >
+    <Grid>
+
+        <Grid.RowDefinitions >
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu x:Name="MN_ActionsMenu" Grid.ColumnSpan="2">
+            <MenuItem Header="Действия">
+                <MenuItem Header="Редактировать" Click="MenuItem_Click"></MenuItem>
+                <MenuItem Header="Уволить" Click="MenuItem_Click_1"></MenuItem>
+                <MenuItem Header="Назначить сотрудника" Click="MenuItem_Click_4"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Отчеты">
+                <MenuItem Header="Приказ об увольнении" Click="MenuItem_Click_2"></MenuItem>
+                <MenuItem Header="Справка о работе" Click="MenuItem_Click_3"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Фамилия</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Имя</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Отчество</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Дата рождения</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Предыдущий стаж, лет</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Образование</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Специальность</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Отдел</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Должность</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Дата приема на работу</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="12" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Уровень зарплаты</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="13" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Дата последнего назначения</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="14" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Уволен?</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="15" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0">Дата увольнения</TextBlock>
+            <TextBox x:Name="TB_Name" Grid.Column="1"   Grid.Row="2" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" IsEnabled="False" />
+            <TextBox x:Name="TB_LastName" Grid.Column="1"   Grid.Row="3" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" IsEnabled="False" />
+            <TextBox x:Name="TB_MiddleName" Grid.Column="1"   Grid.Row="4" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" IsEnabled="False" />
+            <TextBox x:Name="TB_Experience" Grid.Column="1"   Grid.Row="6" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" IsEnabled="False" />
+            <TextBox x:Name="TB_EduLevel" Grid.Column="1"   Grid.Row="7" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" IsEnabled="False" />
+            <TextBox x:Name="TB_Speciality" Grid.Column="1"   Grid.Row="8" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" IsEnabled="False" />
+            <TextBox x:Name="TB_Divison" Grid.Column="1"   Grid.Row="9" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" IsEnabled="False" />
+            <TextBox x:Name="TB_Position" Grid.Column="1"   Grid.Row="10" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" IsEnabled="False" />
+            <TextBox x:Name="TB_Salary" Grid.Column="1"   Grid.Row="12" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" IsEnabled="False" />
+            <DatePicker x:Name="DP_Bday" Grid.Column="1"  Grid.Row="5" IsEnabled="False" />
+            <DatePicker x:Name="DP_HireDate" Grid.Column="1"  Grid.Row="11" IsEnabled="False" />
+            <DatePicker x:Name="DP_AppDate" Grid.Column="1"  Grid.Row="13" IsEnabled="False" />
+            <DatePicker x:Name="DP_FireDate" Grid.Column="1"  Grid.Row="15" IsEnabled="False" />
+            <CheckBox x:Name="CB_Fired" Grid.Column="1" HorizontalAlignment="Left" Margin="35,0,0,0" Grid.Row="14" VerticalAlignment="Center" IsEnabled="False"/>
+            <Border x:Name="BRD_Border" Grid.Column="3" HorizontalAlignment="Stretch" Margin="0,0,20,0" Grid.RowSpan="10" Grid.Row="2" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
+                <Image x:Name="IMG_Photo">
+                </Image>
+            </Border>
+            <Button x:Name="BTN_SelectEduLevel" Grid.Column="2" Grid.Row="7" Visibility="Hidden" Click="BTN_SelectEduLevel_Click">...</Button>
+            <Button x:Name="BTN_SelectDivision" Grid.Column="2" Grid.Row="9" Visibility="Hidden" Click="BTN_SelectDivision_Click">...</Button>
+            <Button x:Name="BTN_SelectPosition" Grid.Column="2" Grid.Row="10" Visibility="Hidden" Click="BTN_SelectPosition_Click">...</Button>
+            <Button x:Name="BTN_SelectImage" Grid.Column="3" Grid.Row="13" Margin="50 0" Visibility="Hidden" Click="BTN_SelectImage_Click">Выбрать фото</Button>
+            <Button x:Name="BTN_SaveChanges" Grid.Column="1" Grid.Row="17" Margin="50 0" Visibility="Hidden" Click="BTN_SaveChanges_Click">Сохранить</Button>
+        </Grid>
+    </Grid>
+</Window>

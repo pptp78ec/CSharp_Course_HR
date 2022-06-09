@@ -1,0 +1,1002 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище HRWorkModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appointments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="PositionId" Type="int" />
+          <Property Name="DivisionId" Type="int" />
+          <Property Name="AppDate" Type="date" />
+          <Property Name="DeletionFlag" Type="bit" />
+          <Property Name="AppOrderNum" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CompanyInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyAdress" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyCity" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyPhine" Type="nvarchar" MaxLength="20" />
+          <Property Name="CompanyEDRP" Type="nvarchar" MaxLength="12" />
+          <Property Name="CompanyHeadId" Type="int" />
+          <Property Name="CompanyHRHeadId" Type="int" />
+          <Property Name="CompanyFinHeadId" Type="int" />
+        </EntityType>
+        <EntityType Name="Divisions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DivisionName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeletionFlag" Type="bit" />
+        </EntityType>
+        <EntityType Name="EduLevels">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EduLevelName" Type="nvarchar" MaxLength="20" />
+          <Property Name="DeletionFlag" Type="bit" />
+        </EntityType>
+        <EntityType Name="Employes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="PriorWorkYears" Type="int" />
+          <Property Name="EduLevelId" Type="int" />
+          <Property Name="Speciality" Type="nvarchar" MaxLength="30" />
+          <Property Name="DivisionId" Type="int" />
+          <Property Name="PositionId" Type="int" />
+          <Property Name="HireDate" Type="date" />
+          <Property Name="SalaryLevel" Type="float" />
+          <Property Name="FiredFlag" Type="bit" />
+          <Property Name="FiredDate" Type="date" />
+          <Property Name="DeletionFlag" Type="bit" />
+        </EntityType>
+        <EntityType Name="FireCauses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CauseName" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Fires">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="CauseID" Type="int" />
+          <Property Name="CauseAddInfo" Type="nvarchar" MaxLength="100" />
+          <Property Name="FireOrderName" Type="nvarchar" MaxLength="30" />
+          <Property Name="FireDate" Type="date" />
+          <Property Name="DeletionFlag" Type="bit" />
+          <Property Name="GeneralFireOrderId" Type="int" />
+        </EntityType>
+        <EntityType Name="GeneralOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GeneralOrderName" Type="nvarchar" MaxLength="20" />
+          <Property Name="GeneralOrderDate" Type="date" />
+          <Property Name="GeneralOrderInfo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Photos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="EmployeePhoto" Type="image" />
+          <Property Name="ImageFormat" Type="varchar" MaxLength="5" />
+          <Property Name="DeletionFlag" Type="bit" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeletionFlag" Type="bit" />
+        </EntityType>
+        <EntityType Name="Salaries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="SalaryLevel" Type="float" />
+          <Property Name="SalaryChanged" Type="date" />
+          <Property Name="DeletionFlag" Type="bit" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsrLogin" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="UsrPassword" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AccessLevel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vacations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="VacationDays" Type="int" />
+        </EntityType>
+        <Association Name="fg_Fir_GeneralFireOrderId_GeneralOrders_Id">
+          <End Role="GeneralOrders" Type="Self.GeneralOrders" Multiplicity="0..1" />
+          <End Role="Fires" Type="Self.Fires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fires">
+              <PropertyRef Name="GeneralFireOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_App_DivisionID_Divisions_Id">
+          <End Role="Divisions" Type="Self.Divisions" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Divisions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_App_EmployeeId_Employes_Id">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_App_PositionId_Positions_Id">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cnfo_CompanyFinHeadId_Employes_Id">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="CompanyInfo" Type="Self.CompanyInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyInfo">
+              <PropertyRef Name="CompanyFinHeadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cnfo_CompanyHeadId_Employes_Id">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="CompanyInfo" Type="Self.CompanyInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyInfo">
+              <PropertyRef Name="CompanyHeadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cnfo_CompanyHRHeadId_Employes_Id">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="CompanyInfo" Type="Self.CompanyInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyInfo">
+              <PropertyRef Name="CompanyHRHeadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Emp_DivisionID_Divisions_Id">
+          <End Role="Divisions" Type="Self.Divisions" Multiplicity="0..1" />
+          <End Role="Employes" Type="Self.Employes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Divisions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employes">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Emp_EduLevelID_EduLevels_Id">
+          <End Role="EduLevels" Type="Self.EduLevels" Multiplicity="0..1" />
+          <End Role="Employes" Type="Self.Employes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EduLevels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employes">
+              <PropertyRef Name="EduLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Emp_PositionId_Positions_Id">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Employes" Type="Self.Employes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employes">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Fir_CauseID_FireCauses_Id">
+          <End Role="FireCauses" Type="Self.FireCauses" Multiplicity="0..1" />
+          <End Role="Fires" Type="Self.Fires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FireCauses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fires">
+              <PropertyRef Name="CauseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Fir_EmployeeId_Employes_Id">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="Fires" Type="Self.Fires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fires">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pho_EmployeeId_Employes_Id">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="Photos" Type="Self.Photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Photos">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Sal_EmployeeId_Employes_Id">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="Salaries" Type="Self.Salaries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Salaries">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Vac_EmployeeId_Employes_Id">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="Vacations" Type="Self.Vacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacations">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище HRWorkModelContainer">
+          <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyInfo" EntityType="Self.CompanyInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Divisions" EntityType="Self.Divisions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EduLevels" EntityType="Self.EduLevels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employes" EntityType="Self.Employes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FireCauses" EntityType="Self.FireCauses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fires" EntityType="Self.Fires" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneralOrders" EntityType="Self.GeneralOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photos" EntityType="Self.Photos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salaries" EntityType="Self.Salaries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacations" EntityType="Self.Vacations" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fg_Fir_GeneralFireOrderId_GeneralOrders_Id" Association="Self.fg_Fir_GeneralFireOrderId_GeneralOrders_Id">
+            <End Role="GeneralOrders" EntitySet="GeneralOrders" />
+            <End Role="Fires" EntitySet="Fires" />
+          </AssociationSet>
+          <AssociationSet Name="fk_App_DivisionID_Divisions_Id" Association="Self.fk_App_DivisionID_Divisions_Id">
+            <End Role="Divisions" EntitySet="Divisions" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_App_EmployeeId_Employes_Id" Association="Self.fk_App_EmployeeId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_App_PositionId_Positions_Id" Association="Self.fk_App_PositionId_Positions_Id">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cnfo_CompanyFinHeadId_Employes_Id" Association="Self.fk_Cnfo_CompanyFinHeadId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="CompanyInfo" EntitySet="CompanyInfo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cnfo_CompanyHeadId_Employes_Id" Association="Self.fk_Cnfo_CompanyHeadId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="CompanyInfo" EntitySet="CompanyInfo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cnfo_CompanyHRHeadId_Employes_Id" Association="Self.fk_Cnfo_CompanyHRHeadId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="CompanyInfo" EntitySet="CompanyInfo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Emp_DivisionID_Divisions_Id" Association="Self.fk_Emp_DivisionID_Divisions_Id">
+            <End Role="Divisions" EntitySet="Divisions" />
+            <End Role="Employes" EntitySet="Employes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Emp_EduLevelID_EduLevels_Id" Association="Self.fk_Emp_EduLevelID_EduLevels_Id">
+            <End Role="EduLevels" EntitySet="EduLevels" />
+            <End Role="Employes" EntitySet="Employes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Emp_PositionId_Positions_Id" Association="Self.fk_Emp_PositionId_Positions_Id">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employes" EntitySet="Employes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Fir_CauseID_FireCauses_Id" Association="Self.fk_Fir_CauseID_FireCauses_Id">
+            <End Role="FireCauses" EntitySet="FireCauses" />
+            <End Role="Fires" EntitySet="Fires" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Fir_EmployeeId_Employes_Id" Association="Self.fk_Fir_EmployeeId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="Fires" EntitySet="Fires" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pho_EmployeeId_Employes_Id" Association="Self.fk_Pho_EmployeeId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="Photos" EntitySet="Photos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Sal_EmployeeId_Employes_Id" Association="Self.fk_Sal_EmployeeId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="Salaries" EntitySet="Salaries" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Vac_EmployeeId_Employes_Id" Association="Self.fk_Vac_EmployeeId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="Vacations" EntitySet="Vacations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRWorkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Appointments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="PositionId" Type="Int32" />
+          <Property Name="DivisionId" Type="Int32" />
+          <Property Name="AppDate" Type="DateTime" Precision="0" />
+          <Property Name="DeletionFlag" Type="Boolean" />
+          <NavigationProperty Name="Divisions" Relationship="Self.fk_App_DivisionID_Divisions_Id" FromRole="Appointments" ToRole="Divisions" />
+          <NavigationProperty Name="Employes" Relationship="Self.fk_App_EmployeeId_Employes_Id" FromRole="Appointments" ToRole="Employes" />
+          <NavigationProperty Name="Positions" Relationship="Self.fk_App_PositionId_Positions_Id" FromRole="Appointments" ToRole="Positions" />
+          <Property Name="AppOrderNum" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Divisions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DivisionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeletionFlag" Type="Boolean" />
+          <NavigationProperty Name="Appointments" Relationship="Self.fk_App_DivisionID_Divisions_Id" FromRole="Divisions" ToRole="Appointments" />
+          <NavigationProperty Name="Employes" Relationship="Self.fk_Emp_DivisionID_Divisions_Id" FromRole="Divisions" ToRole="Employes" />
+        </EntityType>
+        <EntityType Name="EduLevels">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EduLevelName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DeletionFlag" Type="Boolean" />
+          <NavigationProperty Name="Employes" Relationship="Self.fk_Emp_EduLevelID_EduLevels_Id" FromRole="EduLevels" ToRole="Employes" />
+        </EntityType>
+        <EntityType Name="Employes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="PriorWorkYears" Type="Int32" />
+          <Property Name="EduLevelId" Type="Int32" />
+          <Property Name="Speciality" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DivisionId" Type="Int32" />
+          <Property Name="PositionId" Type="Int32" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="SalaryLevel" Type="Double" />
+          <Property Name="FiredFlag" Type="Boolean" />
+          <Property Name="FiredDate" Type="DateTime" Precision="0" />
+          <Property Name="DeletionFlag" Type="Boolean" />
+          <NavigationProperty Name="Appointments" Relationship="Self.fk_App_EmployeeId_Employes_Id" FromRole="Employes" ToRole="Appointments" />
+          <NavigationProperty Name="Divisions" Relationship="Self.fk_Emp_DivisionID_Divisions_Id" FromRole="Employes" ToRole="Divisions" />
+          <NavigationProperty Name="EduLevels" Relationship="Self.fk_Emp_EduLevelID_EduLevels_Id" FromRole="Employes" ToRole="EduLevels" />
+          <NavigationProperty Name="Positions" Relationship="Self.fk_Emp_PositionId_Positions_Id" FromRole="Employes" ToRole="Positions" />
+          <NavigationProperty Name="Fires" Relationship="Self.fk_Fir_EmployeeId_Employes_Id" FromRole="Employes" ToRole="Fires" />
+          <NavigationProperty Name="Photos" Relationship="Self.fk_Pho_EmployeeId_Employes_Id" FromRole="Employes" ToRole="Photos" />
+          <NavigationProperty Name="Salaries" Relationship="Self.fk_Sal_EmployeeId_Employes_Id" FromRole="Employes" ToRole="Salaries" />
+          <NavigationProperty Name="CompanyInfo" Relationship="HRWorkModel.fk_Cnfo_CompanyFinHeadId_Employes_Id" FromRole="Employes" ToRole="CompanyInfo" />
+          <NavigationProperty Name="CompanyInfo1" Relationship="HRWorkModel.fk_Cnfo_CompanyHeadId_Employes_Id" FromRole="Employes" ToRole="CompanyInfo" />
+          <NavigationProperty Name="CompanyInfo2" Relationship="HRWorkModel.fk_Cnfo_CompanyHRHeadId_Employes_Id" FromRole="Employes" ToRole="CompanyInfo" />
+          <NavigationProperty Name="Vacations" Relationship="HRWorkModel.fk_Vac_EmployeeId_Employes_Id" FromRole="Employes" ToRole="Vacations" />
+        </EntityType>
+        <EntityType Name="FireCauses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CauseName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Fires" Relationship="Self.fk_Fir_CauseID_FireCauses_Id" FromRole="FireCauses" ToRole="Fires" />
+        </EntityType>
+        <EntityType Name="Fires">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CauseID" Type="Int32" />
+          <Property Name="CauseAddInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FireOrderName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="FireDate" Type="DateTime" Precision="0" />
+          <Property Name="DeletionFlag" Type="Boolean" />
+          <NavigationProperty Name="Employes" Relationship="Self.fk_Fir_EmployeeId_Employes_Id" FromRole="Fires" ToRole="Employes" />
+          <NavigationProperty Name="FireCauses" Relationship="Self.fk_Fir_CauseID_FireCauses_Id" FromRole="Fires" ToRole="FireCauses" />
+          <Property Name="GeneralFireOrderId" Type="Int32" />
+          <NavigationProperty Name="GeneralOrders" Relationship="HRWorkModel.fg_Fir_GeneralFireOrderId_GeneralOrders_Id" FromRole="Fires" ToRole="GeneralOrders" />
+        </EntityType>
+        <EntityType Name="Photos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="EmployeePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImageFormat" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DeletionFlag" Type="Boolean" />
+          <NavigationProperty Name="Employes" Relationship="Self.fk_Pho_EmployeeId_Employes_Id" FromRole="Photos" ToRole="Employes" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeletionFlag" Type="Boolean" />
+          <NavigationProperty Name="Appointments" Relationship="Self.fk_App_PositionId_Positions_Id" FromRole="Positions" ToRole="Appointments" />
+          <NavigationProperty Name="Employes" Relationship="Self.fk_Emp_PositionId_Positions_Id" FromRole="Positions" ToRole="Employes" />
+        </EntityType>
+        <EntityType Name="Salaries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="SalaryLevel" Type="Double" />
+          <Property Name="SalaryChanged" Type="DateTime" Precision="0" />
+          <Property Name="DeletionFlag" Type="Boolean" />
+          <NavigationProperty Name="Employes" Relationship="Self.fk_Sal_EmployeeId_Employes_Id" FromRole="Salaries" ToRole="Employes" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsrLogin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UsrPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccessLevel" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_App_DivisionID_Divisions_Id">
+          <End Role="Divisions" Type="Self.Divisions" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Divisions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_App_EmployeeId_Employes_Id">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_App_PositionId_Positions_Id">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Emp_DivisionID_Divisions_Id">
+          <End Role="Divisions" Type="Self.Divisions" Multiplicity="0..1" />
+          <End Role="Employes" Type="Self.Employes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Divisions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employes">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Emp_EduLevelID_EduLevels_Id">
+          <End Role="EduLevels" Type="Self.EduLevels" Multiplicity="0..1" />
+          <End Role="Employes" Type="Self.Employes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EduLevels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employes">
+              <PropertyRef Name="EduLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Emp_PositionId_Positions_Id">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Employes" Type="Self.Employes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employes">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Fir_EmployeeId_Employes_Id">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="Fires" Type="Self.Fires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fires">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pho_EmployeeId_Employes_Id">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="Photos" Type="Self.Photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Photos">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Sal_EmployeeId_Employes_Id">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="Salaries" Type="Self.Salaries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Salaries">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Fir_CauseID_FireCauses_Id">
+          <End Role="FireCauses" Type="Self.FireCauses" Multiplicity="0..1" />
+          <End Role="Fires" Type="Self.Fires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FireCauses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fires">
+              <PropertyRef Name="CauseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRWorkEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Appointments" EntityType="Self.Appointments" />
+          <EntitySet Name="Divisions" EntityType="Self.Divisions" />
+          <EntitySet Name="EduLevels" EntityType="Self.EduLevels" />
+          <EntitySet Name="Employes" EntityType="Self.Employes" />
+          <EntitySet Name="FireCauses" EntityType="Self.FireCauses" />
+          <EntitySet Name="Fires" EntityType="Self.Fires" />
+          <EntitySet Name="Photos" EntityType="Self.Photos" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" />
+          <EntitySet Name="Salaries" EntityType="Self.Salaries" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="fk_App_DivisionID_Divisions_Id" Association="Self.fk_App_DivisionID_Divisions_Id">
+            <End Role="Divisions" EntitySet="Divisions" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_App_EmployeeId_Employes_Id" Association="Self.fk_App_EmployeeId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_App_PositionId_Positions_Id" Association="Self.fk_App_PositionId_Positions_Id">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Emp_DivisionID_Divisions_Id" Association="Self.fk_Emp_DivisionID_Divisions_Id">
+            <End Role="Divisions" EntitySet="Divisions" />
+            <End Role="Employes" EntitySet="Employes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Emp_EduLevelID_EduLevels_Id" Association="Self.fk_Emp_EduLevelID_EduLevels_Id">
+            <End Role="EduLevels" EntitySet="EduLevels" />
+            <End Role="Employes" EntitySet="Employes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Emp_PositionId_Positions_Id" Association="Self.fk_Emp_PositionId_Positions_Id">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employes" EntitySet="Employes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Fir_EmployeeId_Employes_Id" Association="Self.fk_Fir_EmployeeId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="Fires" EntitySet="Fires" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pho_EmployeeId_Employes_Id" Association="Self.fk_Pho_EmployeeId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="Photos" EntitySet="Photos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Sal_EmployeeId_Employes_Id" Association="Self.fk_Sal_EmployeeId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="Salaries" EntitySet="Salaries" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Fir_CauseID_FireCauses_Id" Association="Self.fk_Fir_CauseID_FireCauses_Id">
+            <End Role="FireCauses" EntitySet="FireCauses" />
+            <End Role="Fires" EntitySet="Fires" />
+          </AssociationSet>
+          <EntitySet Name="CompanyInfo" EntityType="HRWorkModel.CompanyInfo" />
+          <EntitySet Name="Vacations" EntityType="HRWorkModel.Vacations" />
+          <AssociationSet Name="fk_Cnfo_CompanyFinHeadId_Employes_Id" Association="HRWorkModel.fk_Cnfo_CompanyFinHeadId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="CompanyInfo" EntitySet="CompanyInfo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cnfo_CompanyHeadId_Employes_Id" Association="HRWorkModel.fk_Cnfo_CompanyHeadId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="CompanyInfo" EntitySet="CompanyInfo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cnfo_CompanyHRHeadId_Employes_Id" Association="HRWorkModel.fk_Cnfo_CompanyHRHeadId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="CompanyInfo" EntitySet="CompanyInfo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Vac_EmployeeId_Employes_Id" Association="HRWorkModel.fk_Vac_EmployeeId_Employes_Id">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="Vacations" EntitySet="Vacations" />
+          </AssociationSet>
+          <EntitySet Name="GeneralOrders" EntityType="HRWorkModel.GeneralOrders" />
+          <AssociationSet Name="fg_Fir_GeneralFireOrderId_GeneralOrders_Id" Association="HRWorkModel.fg_Fir_GeneralFireOrderId_GeneralOrders_Id">
+            <End Role="GeneralOrders" EntitySet="GeneralOrders" />
+            <End Role="Fires" EntitySet="Fires" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CompanyInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAdress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyPhine" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyEDRP" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyHeadId" Type="Int32" />
+          <Property Name="CompanyHRHeadId" Type="Int32" />
+          <Property Name="CompanyFinHeadId" Type="Int32" />
+          <NavigationProperty Name="Employes" Relationship="HRWorkModel.fk_Cnfo_CompanyFinHeadId_Employes_Id" FromRole="CompanyInfo" ToRole="Employes" />
+          <NavigationProperty Name="Employes1" Relationship="HRWorkModel.fk_Cnfo_CompanyHeadId_Employes_Id" FromRole="CompanyInfo" ToRole="Employes" />
+          <NavigationProperty Name="Employes2" Relationship="HRWorkModel.fk_Cnfo_CompanyHRHeadId_Employes_Id" FromRole="CompanyInfo" ToRole="Employes" />
+        </EntityType>
+        <EntityType Name="Vacations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="VacationDays" Type="Int32" />
+          <NavigationProperty Name="Employes" Relationship="HRWorkModel.fk_Vac_EmployeeId_Employes_Id" FromRole="Vacations" ToRole="Employes" />
+        </EntityType>
+        <Association Name="fk_Cnfo_CompanyFinHeadId_Employes_Id">
+          <End Type="HRWorkModel.Employes" Role="Employes" Multiplicity="0..1" />
+          <End Type="HRWorkModel.CompanyInfo" Role="CompanyInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyInfo">
+              <PropertyRef Name="CompanyFinHeadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cnfo_CompanyHeadId_Employes_Id">
+          <End Type="HRWorkModel.Employes" Role="Employes" Multiplicity="0..1" />
+          <End Type="HRWorkModel.CompanyInfo" Role="CompanyInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyInfo">
+              <PropertyRef Name="CompanyHeadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cnfo_CompanyHRHeadId_Employes_Id">
+          <End Type="HRWorkModel.Employes" Role="Employes" Multiplicity="0..1" />
+          <End Type="HRWorkModel.CompanyInfo" Role="CompanyInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyInfo">
+              <PropertyRef Name="CompanyHRHeadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Vac_EmployeeId_Employes_Id">
+          <End Type="HRWorkModel.Employes" Role="Employes" Multiplicity="0..1" />
+          <End Type="HRWorkModel.Vacations" Role="Vacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacations">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GeneralOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GeneralOrderName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="GeneralOrderDate" Type="DateTime" Precision="0" />
+          <Property Name="GeneralOrderInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Fires" Relationship="HRWorkModel.fg_Fir_GeneralFireOrderId_GeneralOrders_Id" FromRole="GeneralOrders" ToRole="Fires" />
+        </EntityType>
+        <Association Name="fg_Fir_GeneralFireOrderId_GeneralOrders_Id">
+          <End Type="HRWorkModel.GeneralOrders" Role="GeneralOrders" Multiplicity="0..1" />
+          <End Type="HRWorkModel.Fires" Role="Fires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fires">
+              <PropertyRef Name="GeneralFireOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище HRWorkModelContainer" CdmEntityContainer="HRWorkEntities">
+          <EntitySetMapping Name="Appointments">
+            <EntityTypeMapping TypeName="HRWorkModel.Appointments">
+              <MappingFragment StoreEntitySet="Appointments">
+                <ScalarProperty Name="AppOrderNum" ColumnName="AppOrderNum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="AppDate" ColumnName="AppDate" />
+                <ScalarProperty Name="DeletionFlag" ColumnName="DeletionFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Divisions">
+            <EntityTypeMapping TypeName="HRWorkModel.Divisions">
+              <MappingFragment StoreEntitySet="Divisions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
+                <ScalarProperty Name="DeletionFlag" ColumnName="DeletionFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EduLevels">
+            <EntityTypeMapping TypeName="HRWorkModel.EduLevels">
+              <MappingFragment StoreEntitySet="EduLevels">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EduLevelName" ColumnName="EduLevelName" />
+                <ScalarProperty Name="DeletionFlag" ColumnName="DeletionFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employes">
+            <EntityTypeMapping TypeName="HRWorkModel.Employes">
+              <MappingFragment StoreEntitySet="Employes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="PriorWorkYears" ColumnName="PriorWorkYears" />
+                <ScalarProperty Name="EduLevelId" ColumnName="EduLevelId" />
+                <ScalarProperty Name="Speciality" ColumnName="Speciality" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="SalaryLevel" ColumnName="SalaryLevel" />
+                <ScalarProperty Name="FiredFlag" ColumnName="FiredFlag" />
+                <ScalarProperty Name="FiredDate" ColumnName="FiredDate" />
+                <ScalarProperty Name="DeletionFlag" ColumnName="DeletionFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FireCauses">
+            <EntityTypeMapping TypeName="HRWorkModel.FireCauses">
+              <MappingFragment StoreEntitySet="FireCauses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CauseName" ColumnName="CauseName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fires">
+            <EntityTypeMapping TypeName="HRWorkModel.Fires">
+              <MappingFragment StoreEntitySet="Fires">
+                <ScalarProperty Name="GeneralFireOrderId" ColumnName="GeneralFireOrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CauseID" ColumnName="CauseID" />
+                <ScalarProperty Name="CauseAddInfo" ColumnName="CauseAddInfo" />
+                <ScalarProperty Name="FireOrderName" ColumnName="FireOrderName" />
+                <ScalarProperty Name="FireDate" ColumnName="FireDate" />
+                <ScalarProperty Name="DeletionFlag" ColumnName="DeletionFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photos">
+            <EntityTypeMapping TypeName="HRWorkModel.Photos">
+              <MappingFragment StoreEntitySet="Photos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeePhoto" ColumnName="EmployeePhoto" />
+                <ScalarProperty Name="ImageFormat" ColumnName="ImageFormat" />
+                <ScalarProperty Name="DeletionFlag" ColumnName="DeletionFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="HRWorkModel.Positions">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="DeletionFlag" ColumnName="DeletionFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salaries">
+            <EntityTypeMapping TypeName="HRWorkModel.Salaries">
+              <MappingFragment StoreEntitySet="Salaries">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="SalaryLevel" ColumnName="SalaryLevel" />
+                <ScalarProperty Name="SalaryChanged" ColumnName="SalaryChanged" />
+                <ScalarProperty Name="DeletionFlag" ColumnName="DeletionFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HRWorkModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UsrLogin" ColumnName="UsrLogin" />
+                <ScalarProperty Name="UsrPassword" ColumnName="UsrPassword" />
+                <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyInfo">
+            <EntityTypeMapping TypeName="HRWorkModel.CompanyInfo">
+              <MappingFragment StoreEntitySet="CompanyInfo">
+                <ScalarProperty Name="CompanyFinHeadId" ColumnName="CompanyFinHeadId" />
+                <ScalarProperty Name="CompanyHRHeadId" ColumnName="CompanyHRHeadId" />
+                <ScalarProperty Name="CompanyHeadId" ColumnName="CompanyHeadId" />
+                <ScalarProperty Name="CompanyEDRP" ColumnName="CompanyEDRP" />
+                <ScalarProperty Name="CompanyPhine" ColumnName="CompanyPhine" />
+                <ScalarProperty Name="CompanyCity" ColumnName="CompanyCity" />
+                <ScalarProperty Name="CompanyAdress" ColumnName="CompanyAdress" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacations">
+            <EntityTypeMapping TypeName="HRWorkModel.Vacations">
+              <MappingFragment StoreEntitySet="Vacations">
+                <ScalarProperty Name="VacationDays" ColumnName="VacationDays" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralOrders">
+            <EntityTypeMapping TypeName="HRWorkModel.GeneralOrders">
+              <MappingFragment StoreEntitySet="GeneralOrders">
+                <ScalarProperty Name="GeneralOrderInfo" ColumnName="GeneralOrderInfo" />
+                <ScalarProperty Name="GeneralOrderDate" ColumnName="GeneralOrderDate" />
+                <ScalarProperty Name="GeneralOrderName" ColumnName="GeneralOrderName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

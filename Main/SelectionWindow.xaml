@@ -1,0 +1,19 @@
+﻿<Window x:Class="Main.SelectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Title="Выбор" Height="500" Width="400" ResizeMode="CanMinimize">
+    <StackPanel>
+        <ListView x:Name="LV_selectionList" Height="400" Margin="10,10,10,0" SelectionMode="Single" >
+            <ListView.View>
+                <GridView>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btn_Select" Content="Выбрать" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,20,0,0" Padding="2" Click="btn_Select_Click" />
+
+    </StackPanel>
+</Window>
