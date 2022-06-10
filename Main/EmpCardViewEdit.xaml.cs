@@ -14,6 +14,7 @@ namespace Main
     public partial class EmpCardViewEdit : Window
     {
         public bool IsCreationWindow { set; get; }
+
         private bool editMode = false;
         private bool EditMode
         {
