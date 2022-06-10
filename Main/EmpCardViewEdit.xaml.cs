@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Data.Entity;
+using System.Text.RegularExpressions;
 
 namespace Main
 {
@@ -495,6 +496,18 @@ namespace Main
             {
                 Context.Dispose();
             }
+        }
+
+        private void TB_Experience_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            Regex rgx = new Regex(@"^\d+");
+            e.Handled = !rgx.IsMatch(e.Text);
+        }
+
+        private void TB_Salary_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            Regex rgx = new Regex(@"[0-9.,]");
+            e.Handled = !rgx.IsMatch(e.Text);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace Main
@@ -152,6 +153,18 @@ namespace Main
                 }
             }
             catch (Exception) { }
+        }
+
+        private void TB_Salary_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            Regex rgx = new Regex(@"[0-9.,]");
+            e.Handled = !rgx.IsMatch(e.Text);
+        }
+
+        private void TB_Experience_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            Regex rgx = new Regex(@"^\d+");
+            e.Handled = !rgx.IsMatch(e.Text);
         }
     }
 }

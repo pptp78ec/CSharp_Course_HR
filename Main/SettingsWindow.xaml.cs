@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.Entity;
 using DataClassModel;
+using System.Text.RegularExpressions;
 
 namespace Main
 {
@@ -156,6 +157,18 @@ namespace Main
         {
             SaveSettings();
             Close();
+        }
+
+        private void TB_EDRP_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex rgx = new Regex(@"[0-9]");
+            e.Handled = !rgx.IsMatch(e.Text);
+        }
+
+        private void TB_Phone_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex rgx = new Regex(@"[0-9-+()]");
+            e.Handled = !rgx.IsMatch(e.Text);
         }
     }
 }
