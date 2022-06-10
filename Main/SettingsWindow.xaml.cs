@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DataClassModel;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Data.Entity;
-using DataClassModel;
-using System.Text.RegularExpressions;
 
 namespace Main
 {
@@ -33,15 +24,19 @@ namespace Main
         public int SelFinId { set; get; } = default;
         public int SelHRId { set; get; } = default;
 
+        private Regex rgx_edrp_input = new Regex(@"[0-9]");
+        private Regex rgx_edrp_total = new Regex(@"^[0-9]{0,7}$");
+        private Regex rgx_phone_input = new Regex(@"[0-9-+()]");
+        private Regex rgx_phone_total = new Regex(@"^[0-9-+()]{0,19}$");
 
-        void LoadSettings()
+        private void LoadSettings()
         {
             using (Context = new HRWorkEntities())
             {
                 try
                 {
                     var settings = Context.CompanyInfo.First();
-                    
+
                     TB_CompanyName.Text = settings.CompanyName;
                     TB_Addr.Text = settings.CompanyAdress;
                     TB_City.Text = settings.CompanyCity;
@@ -61,7 +56,7 @@ namespace Main
             }
         }
 
-        void SaveSettings()
+        private void SaveSettings()
         {
             using (Context = new HRWorkEntities())
             {
@@ -78,7 +73,7 @@ namespace Main
                         settings.CompanyCity = TB_City.Text;
                         settings.CompanyEDRP = TB_EDRP.Text;
                         settings.CompanyPhine = TB_Phone.Text;
-                        
+
                     }
                     else
                     {
@@ -99,14 +94,14 @@ namespace Main
             }
         }
 
-        int GetProp(string _retPropName)
+        private int GetProp(string _retPropName)
         {
             switch (_retPropName)
             {
                 case "SelCEOId":
                     {
                         return SelCEOId;
-                        
+
                     }
                 case "SelFinId":
                     {
@@ -127,12 +122,12 @@ namespace Main
             {
                 using (_context = new HRWorkEntities())
                 {
-                SelectionWindow selection = new SelectionWindow(_context.Employes.ToList(), _retValueName);
-                selection.Owner = this;
-                selection.ShowDialog();
+                    SelectionWindow selection = new SelectionWindow(_context.Employes.ToList(), _retValueName);
+                    selection.Owner = this;
+                    selection.ShowDialog();
                     int prop = GetProp(_retValueName);
-                var result = _context.Employes.FirstOrDefault(x => x.Id == prop);
-                _textBox.Text = result.LastName + " " + result.FirstName + " " + result.MiddleName;
+                    var result = _context.Employes.FirstOrDefault(x => x.Id == prop);
+                    _textBox.Text = result.LastName + " " + result.FirstName + " " + result.MiddleName;
                 }
             }
             catch (Exception) { }
@@ -161,14 +156,12 @@ namespace Main
 
         private void TB_EDRP_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex rgx = new Regex(@"[0-9]");
-            e.Handled = !rgx.IsMatch(e.Text);
+            e.Handled = rgx_edrp_input.IsMatch(e.Text) && rgx_edrp_total.IsMatch(TB_EDRP.Text) ? false : true;
         }
 
         private void TB_Phone_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex rgx = new Regex(@"[0-9-+()]");
-            e.Handled = !rgx.IsMatch(e.Text);
+            e.Handled = rgx_phone_input.IsMatch(e.Text) && rgx_phone_total.IsMatch(TB_Phone.Text) ? false : true;
         }
     }
 }

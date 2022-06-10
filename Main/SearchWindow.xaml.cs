@@ -23,6 +23,10 @@ namespace Main
         private int DivisionId { get; set; } = default;
         private HRWorkEntities Context { get; set; }
 
+        private Regex rgx_salary_input = new Regex(@"[0-9\.,]");
+        private Regex rgx_salary_total = new Regex(@"^([0-9]{0,5})*([.,])?([0-9]{1})?$");
+        private Regex rgx_experience_input = new Regex(@"[0-9]");
+        private Regex rgx_experience_total = new Regex(@"^[0-9]{0,1}$");
 
         private void BTN_SelectEduLevel_Click(object sender, RoutedEventArgs e)
         {
@@ -157,14 +161,12 @@ namespace Main
 
         private void TB_Salary_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            Regex rgx = new Regex(@"[0-9.,]");
-            e.Handled = !rgx.IsMatch(e.Text);
+            e.Handled = rgx_salary_input.IsMatch(e.Text) && rgx_salary_total.IsMatch(TB_Salary.Text) ? false : true;
         }
 
         private void TB_Experience_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            Regex rgx = new Regex(@"^\d+");
-            e.Handled = !rgx.IsMatch(e.Text);
+            e.Handled = rgx_experience_input.IsMatch(e.Text) && rgx_experience_total.IsMatch(TB_Experience.Text) ? false : true;
         }
     }
 }
