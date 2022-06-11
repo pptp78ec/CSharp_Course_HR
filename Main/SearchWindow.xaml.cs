@@ -27,6 +27,8 @@ namespace Main
         private Regex rgx_salary_total = new Regex(@"^([0-9]{0,5})*([.,])?([0-9]{1})?$");
         private Regex rgx_experience_input = new Regex(@"[0-9]");
         private Regex rgx_experience_total = new Regex(@"^[0-9]{0,1}$");
+        private Regex rgx_maxsize30 = new Regex(@"^[\d\D\w\D\s\S]{0,29}$");
+        private Regex rgx_maxsize50 = new Regex(@"^[\d\D\w\D\s\S]{0,49}$");
 
         private void BTN_SelectEduLevel_Click(object sender, RoutedEventArgs e)
         {
@@ -167,6 +169,26 @@ namespace Main
         private void TB_Experience_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             e.Handled = rgx_experience_input.IsMatch(e.Text) && rgx_experience_total.IsMatch(TB_Experience.Text) ? false : true;
+        }
+
+        private void TB_Name_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize50.IsMatch(TB_Name.Text) ? false : true;
+        }
+
+        private void TB_LastName_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize50.IsMatch(TB_LastName.Text) ? false : true;
+        }
+
+        private void TB_MiddleName_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize50.IsMatch(TB_MiddleName.Text) ? false : true;
+        }
+
+        private void TB_Speciality_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize30.IsMatch(TB_Speciality.Text) ? false : true;
         }
     }
 }

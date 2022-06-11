@@ -24,13 +24,13 @@ go
 
 create table Employes (
 Id int NOT NULL primary key identity(1,1),
-LastName nvarchar(50) default 'Иванов',
-FirstName nvarchar(50) default 'Иван',
-MiddleName nvarchar(50) default 'Иванович',
+LastName nvarchar(50) default N'Иванов',
+FirstName nvarchar(50) default N'Иван',
+MiddleName nvarchar(50) default N'Иванович',
 BirthDate date default '1990-12-12',
 PriorWorkYears int,
 EduLevelId int default 1,
-Speciality nvarchar(30) default 'техник',
+Speciality nvarchar(30) default N'техник',
 DivisionId int default 1,
 PositionId int default 1,
 HireDate date default GETDATE(),
@@ -43,21 +43,21 @@ go
 
 create table Divisions (
 Id int NOT NULL primary key identity(1,1),
-DivisionName nvarchar(100) default 'отдел',
+DivisionName nvarchar(100) default N'отдел',
 DeletionFlag bit default 0
 );
 go
 
 create table EduLevels (
 Id int NOT NULL primary key identity(1,1),
-EduLevelName nvarchar(20) default 'образование',
+EduLevelName nvarchar(20) default N'образование',
 DeletionFlag bit default 0
 );
 go
 
 create table Positions (
 Id int NOT NULL primary key identity(1,1),
-PositionName nvarchar(50) default 'должность',
+PositionName nvarchar(50) default N'должность',
 DeletionFlag bit default 0
 );
 go

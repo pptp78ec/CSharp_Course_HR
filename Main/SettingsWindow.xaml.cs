@@ -25,10 +25,10 @@ namespace Main
         public int SelHRId { set; get; } = default;
 
         private Regex rgx_edrp_input = new Regex(@"[0-9]");
-        private Regex rgx_edrp_total = new Regex(@"^[0-9]{0,7}$");
+        private Regex rgx_edrp_total = new Regex(@"^[0-9]{0,11}$");
         private Regex rgx_phone_input = new Regex(@"[0-9-+()]");
         private Regex rgx_phone_total = new Regex(@"^[0-9-+()]{0,19}$");
-
+        private Regex rgx_maxsize100 = new Regex(@"^[\d\D\w\D\s\S]{0,99}$");
         private void LoadSettings()
         {
             using (Context = new HRWorkEntities())
@@ -162,6 +162,21 @@ namespace Main
         private void TB_Phone_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = rgx_phone_input.IsMatch(e.Text) && rgx_phone_total.IsMatch(TB_Phone.Text) ? false : true;
+        }
+
+        private void TB_CompanyName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize100.IsMatch(TB_CompanyName.Text) ? false : true;
+        }
+
+        private void TB_Addr_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize100.IsMatch(TB_Addr.Text) ? false : true;
+        }
+
+        private void TB_City_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize100.IsMatch(TB_City.Text) ? false : true;
         }
     }
 }

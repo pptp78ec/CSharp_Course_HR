@@ -1,6 +1,7 @@
 ﻿using DataClassModel;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace Main
@@ -13,6 +14,8 @@ namespace Main
         public int SelUserId { get; set; } = default;
         public int SelPosId { get; set; } = default;
         public int SelDivId { get; set; } = default;
+
+        private Regex rgx_maxsize20 = new Regex(@"^[\d\D\w\D\s\S]{0,19}$");
 
         private HRWorkEntities Context { get; set; }
         public AppointWindow()
@@ -68,6 +71,11 @@ namespace Main
             }
             catch (Exception) { }
             Close();
+        }
+
+        private void TB_AppOrder_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled =  rgx_maxsize20.IsMatch(TB_AppOrder.Text) ? false : true;
         }
     }
 }
