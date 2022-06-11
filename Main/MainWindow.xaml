@@ -13,6 +13,11 @@
                 <MenuItem Header="Поиск сотрудника" Click="MenuItem_Click_1"/>
                 <MenuItem Header="Под сокращение по возрасту" Click="MenuItem_Click_2"/>
             </MenuItem>
+            <MenuItem Header="Приказы">
+                <MenuItem Header="Новый общий приказ" Click="MenuItem_Click_4"/>
+                <MenuItem Header="Просмотр общих приказов" Click="MenuItem_Click_5"/>
+                <MenuItem Header="Все приказы на увольнение" Click="MenuItem_Click_6"/>
+            </MenuItem>    
             <MenuItem Header="Программа">
                 <MenuItem Header="Параметры" Click="MenuItem_Click"/>
             </MenuItem>

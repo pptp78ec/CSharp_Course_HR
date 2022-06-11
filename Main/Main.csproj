@@ -82,6 +82,9 @@
     <Compile Include="EmpCardViewEdit.xaml.cs">
       <DependentUpon>EmpCardViewEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GenOrdersWindow.xaml.cs">
+      <DependentUpon>GenOrdersWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EmpCardViewEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GenOrdersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
