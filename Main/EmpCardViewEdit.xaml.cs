@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Data.Entity;
+using System.Text.RegularExpressions;
 
 namespace Main
 {
@@ -14,7 +15,6 @@ namespace Main
     public partial class EmpCardViewEdit : Window
     {
         public bool IsCreationWindow { set; get; }
-        private bool editMode = false;
         private bool EditMode
         {
             get
@@ -34,27 +34,53 @@ namespace Main
         private int ImageHash { get; set; }
         private string NewImageName { get; set; }
         public HRWorkEntities Context { get; set; }
+
+        private Regex rgx_salary_input = new Regex(@"[0-9\.,]");
+        private Regex rgx_salary_total = new Regex(@"^([0-9]{0,5})*([.,])?([0-9]{1})?$");
+        private Regex rgx_experience_input = new Regex(@"[0-9]");
+        private Regex rgx_experience_total = new Regex(@"^[0-9]{0,1}$");
+        private Regex rgx_maxsize30 = new Regex(@"^[\d\D\w\D\s\S]{0,29}$");
+        private Regex rgx_maxsize50 = new Regex(@"^[\d\D\w\D\s\S]{0,49}$");
+
+        private bool editMode = false;
+
         public EmpCardViewEdit()
         {
             InitializeComponent();
         }
-
-        private void ReloadContext()
+        public EmpCardViewEdit(bool isCreationWindow, int selectedEmpId)
         {
-            Context.Appointments.Load();
-            Context.CompanyInfo.Load();
-            Context.Divisions.Load();
-            Context.EduLevels.Load();
-            Context.Employes.Load();
-            Context.FireCauses.Load();
-            Context.Fires.Load();
-            Context.GeneralOrders.Load();
-            Context.Photos.Load();
-            Context.Positions.Load();
-            Context.Salaries.Load();
-            Context.Users.Load();
-            Context.Vacations.Load();
+            InitializeComponent();
+            Context = new HRWorkEntities();
+            Context.Database.CommandTimeout = 0;
+            if (!isCreationWindow)
+            {
+                SelectedEmpId = selectedEmpId;
+                IsCreationWindow = isCreationWindow;
+                FillFields();
+            }
+            else
+            {
+                IsCreationWindow = isCreationWindow;
+            }
+
         }
+        //private void ReloadContext()
+        //{
+        //    Context.Appointments.Load();
+        //    Context.CompanyInfo.Load();
+        //    Context.Divisions.Load();
+        //    Context.EduLevels.Load();
+        //    Context.Employes.Load();
+        //    Context.FireCauses.Load();
+        //    Context.Fires.Load();
+        //    Context.GeneralOrders.Load();
+        //    Context.Photos.Load();
+        //    Context.Positions.Load();
+        //    Context.Salaries.Load();
+        //    Context.Users.Load();
+        //    Context.Vacations.Load();
+        //}
 
         private bool FieldsFilled()
         {
@@ -178,23 +204,7 @@ namespace Main
             }
 
         }
-        public EmpCardViewEdit(bool isCreationWindow, int selectedEmpId)
-        {
-            InitializeComponent();
-            Context = new HRWorkEntities();
-            Context.Database.CommandTimeout = 0;
-            if (!isCreationWindow)
-            {
-                SelectedEmpId = selectedEmpId;
-                IsCreationWindow = isCreationWindow;
-                FillFields();
-            }
-            else
-            {
-                IsCreationWindow = isCreationWindow;
-            }
-
-        }
+        
         private void ButtonVisibility(bool isVisible)
         {
             if (isVisible)
@@ -475,17 +485,6 @@ namespace Main
             ap.Owner = this;
             ap.ShowDialog();
             FillFields();
-            //using (Context = new HRWorkEntities())
-            //{
-            //    try
-            //    {
-            //        Appointments appointments = Context.Appointments.LastOrDefault(x => x.EmployeeId == SelectedEmpId);
-            //        DP_AppDate.SelectedDate = appointments.AppDate;
-            //        Context.Employes.FirstOrDefault(x => x.Id == SelectedEmpId).LastAppDateID = appointments.Id;
-            //    }
-            //    catch (Exception) { }
-            //}
-
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -494,6 +493,36 @@ namespace Main
             {
                 Context.Dispose();
             }
+        }
+
+        private void TB_Experience_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_experience_input.IsMatch(e.Text) && rgx_experience_total.IsMatch(TB_Experience.Text) ? false : true;
+        }
+
+        private void TB_Salary_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_salary_input.IsMatch(e.Text) && rgx_salary_total.IsMatch(TB_Salary.Text) ? false : true;
+        }
+
+        private void TB_Name_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize50.IsMatch(TB_Name.Text) ? false : true;
+        }
+
+        private void TB_LastName_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize50.IsMatch(TB_LastName.Text) ? false : true;
+        }
+
+        private void TB_MiddleName_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize50.IsMatch(TB_MiddleName.Text) ? false : true;
+        }
+
+        private void TB_Speciality_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize30.IsMatch(TB_Speciality.Text) ? false : true;
         }
     }
 }

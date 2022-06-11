@@ -1,7 +1,9 @@
 ﻿using DataClassModel;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+
 
 namespace Main
 {
@@ -25,6 +27,9 @@ namespace Main
         public int FireCauseId { get; set; }
         public int GenOrderId { get; set; }
         private HRWorkEntities Context { get; set; }
+
+        private Regex rgx_maxsize30 = new Regex(@"^[\d\D\w\D\s\S]{0,29}$");
+        private Regex rgx_maxsize100 = new Regex(@"^[\d\D\w\D\s\S]{0,99}$");
 
         private void DoDismissal()
         {
@@ -71,6 +76,16 @@ namespace Main
             selFCW.ShowDialog();
             TB_GenOrder.Text = Context.GeneralOrders.FirstOrDefault(x => x.Id == GenOrderId).GeneralOrderName;
 
+        }
+
+        private void TB_Order_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize30.IsMatch(TB_Order.Text) ? false : true;
+        }
+
+        private void TB_AddInfo_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = rgx_maxsize100.IsMatch(TB_AddInfo.Text) ? false : true;
         }
     }
 }
